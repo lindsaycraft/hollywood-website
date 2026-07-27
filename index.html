@@ -9,6 +9,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
  
   <style>
+    /* ---------- Scoped to the AFTER version only ---------- */
     .after {
       max-width: 760px;
       margin: 0 auto;
@@ -35,7 +36,7 @@
     }
  
     .after section {
-      overflow: auto;
+      overflow: auto; /* contains the floated image so layout doesn't break */
       margin-bottom: 1.5em;
     }
  
@@ -59,6 +60,7 @@
       margin: 2.5em auto;
     }
  
+    /* the single "alternate alignment / varying width" emphasis paragraph */
     .after .emphasis {
       text-align: right;
       max-width: 65%;
@@ -125,14 +127,63 @@
       margin-bottom: 0.4em;
     }
  
+    /* visible keyboard focus, kept simple for accessibility */
     a:focus-visible,
     iframe:focus-visible {
       outline: 3px solid #B8860B;
       outline-offset: 2px;
     }
+ 
+    /* ---------- Two-column before/after comparison layout ---------- */
+    body {
+      background: #ffffff;
+      margin: 0;
+      padding: 2rem;
+    }
+ 
+    .comparison {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      column-gap: 3rem;
+      align-items: start;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+ 
+    .col-label {
+      font-size: 0.85rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      padding-bottom: 0.4em;
+      margin-bottom: 1.5em;
+    }
+ 
+    .before-label {
+      font-family: Arial, sans-serif;
+      color: #000000;
+      border-bottom: 2px solid #000000;
+    }
+ 
+    .after-label {
+      font-family: 'Playfair Display', Georgia, serif;
+      color: #7B1E3A;
+      border-bottom: 2px solid #B8860B;
+    }
+ 
+    @media (max-width: 850px) {
+      .comparison {
+        grid-template-columns: 1fr;
+      }
+    }
   </style>
 </head>
 <body>
+ 
+  <div class="comparison">
+ 
+  <div class="before-col">
+  <p class="col-label before-label">Before</p>
  
   <!-- ================= BEFORE: unstyled wall of text ================= -->
  
@@ -162,10 +213,12 @@
   <h2>The Paramount Decree and the Rise of the Freelance Star</h2>
   <p>In 1948, the Supreme Court's ruling in United States v. Paramount Pictures forced the major studios to sell off their theater chains, cutting into the profits that had funded long-term contracts in the first place. At the same time, television was pulling audiences away from movie theaters, and the studios could no longer justify the expense of keeping a large roster of stars on salary year-round. Between the late 1940s and the early 1960s, the studios gradually let their contract players go, and talent agents such as Lew Wasserman of MCA stepped in to "package" freelance stars, directors, and writers into individual projects. By the time Clark Gable's own contract lapsed in 1954, the seven-year deal that had defined Old Hollywood for three decades was already fading into history.</p>
  
+  </div> <!-- /before-col -->
  
   <!-- ================= AFTER: styled version ================= -->
  
-  <div class="after">
+  <div class="after-col after">
+    <p class="col-label after-label">After</p>
  
     <h1>The Star System: How Old Hollywood Owned Its Actors</h1>
  
@@ -186,7 +239,7 @@
     <section>
       <h2>The Publicity Machine</h2>
       <figure>
-        <img src="jeanHarlow1935MGM.jpg" alt="a 1930s studio publicity still of a contract actress Jean Harlow posed for a glamour portrait">
+        <img src="jeanHarlow1935MGM" alt="a 1930s studio publicity still of a contract actress Jean Harlow posed for a glamour portrait">
         <figcaption>A studio publicity still, the kind produced by in-house photography departments.</figcaption>
       </figure>
       <p>Each studio ran its own in-house <mark>publicity department</mark>, and its job was to keep a star's image glowing in the public eye. Photographers such as MGM's George Hurrell produced glamorous portrait stills that were distributed to magazines and fan clubs across the country. Publicists arranged interviews, staged romances, and quietly buried scandals that might tarnish a star's reputation, all to protect the studio's investment. For decades, most of what audiences believed about their favorite stars came from this well-oiled machine rather than from the stars themselves.</p>
@@ -226,6 +279,7 @@
       <h2>The Paramount Decree and the Rise of the Freelance Star</h2>
       <p>In 1948, the Supreme Court's ruling in United States v. Paramount Pictures forced the major studios to sell off their theater chains, cutting into the profits that had funded long-term contracts in the first place. At the same time, television was pulling audiences away from movie theaters, and the studios could no longer justify the expense of keeping a large roster of stars on salary year-round. Between the late 1940s and the early 1960s, the studios gradually let their contract players go, and talent agents such as Lew Wasserman of MCA stepped in to <mark>package</mark> freelance stars, directors, and writers into individual projects. By the time Clark Gable's own contract lapsed in 1954, the seven-year deal that had defined Old Hollywood for three decades was already fading into history.</p>
     </section>
+ 
     <div class="video-wrapper">
       <iframe
         src="https://www.youtube.com/embed/nM7AH3ZXWFU"
@@ -234,7 +288,9 @@
       </iframe>
     </div>
  
-  </div>
+  </div> <!-- /after-col -->
+ 
+  </div> <!-- /comparison -->
  
   <div class="sources">
     <h3>Sources</h3>
